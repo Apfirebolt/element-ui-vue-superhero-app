@@ -65,3 +65,12 @@ export default {
   },
 };
 </script>
+<style>
+.el-tabs__nav-scroll {
+  padding: 0.5rem !important;
+};
+.el-tabs__item {
+  color: red !important;
+  font-size: 1.2rem !important;
+}
+</style>

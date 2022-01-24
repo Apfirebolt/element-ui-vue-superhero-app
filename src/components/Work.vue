@@ -6,9 +6,6 @@
         >Operation button</el-button
       >
     </div>
-    <div v-for="o in 4" :key="o" class="text item">
-      {{ "List item " + o }}
-    </div>
     {{ passedData }}
   </el-card>
 </template>
