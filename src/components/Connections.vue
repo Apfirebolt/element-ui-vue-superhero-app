@@ -1,39 +1,32 @@
 <template>
-  <div class="container">
-
-    <div class="card my-3 shadow text-danger">
-      <div class="card-header">
-        <h2 class="text-center">Connections Container</h2>
-      </div>
-      <div class="card-body">
-        <p class="custom_header">
-          Groups
-        </p>
-        {{ passed_data }}
-        <p class="custom_header">
-          Relatives
-        </p>
-
-        {{ passed_data.relatives }}
-      </div>
+  <el-card class="box-card">
+    <div slot="header" class="clearfix">
+      <span>Card name</span>
+      <el-button style="float: right; padding: 3px 0" type="text"
+        >Operation button</el-button
+      >
     </div>
-  </div>
+    <div v-for="o in 4" :key="o" class="text item">
+      {{ "List item " + o }}
+    </div>
+    {{ passedData }}
+  </el-card>
 </template>
 
 <script>
-  export default {
-    name: 'connections',
-    data() {
-      return {
-        relatives: [],
-        teams: []
-      }
+export default {
+  name: "connections",
+  data() {
+    return {
+      relatives: [],
+      teams: [],
+    };
+  },
+  props: {
+    passedData: {
+      required: true,
+      type: Object,
     },
-    props: {
-      passed_data: {
-        required: true,
-        type: Object
-      }
-    },
-  }
+  },
+};
 </script>

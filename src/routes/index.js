@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/:name',
     name: 'Superhero',
-    component: () => import('../pages/search.vue')
+    component: () => import('../pages/detail.vue')
   },
 ];
 

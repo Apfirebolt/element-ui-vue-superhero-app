@@ -1,25 +1,14 @@
 <template>
-  <div class="container">
-    <div class="card my-3 shadow text-danger">
-      <div class="card-header">
-        <h2 class="text-center">Biography</h2>
-      </div>
-      <div class="card-body">
-        <div
-          v-for="(item, index) in Object.keys(passedData)"
-          :key="index"
-          class="d-flex justify-content-between px-4 py-2"
-        >
-          <p>{{ item }}</p>
-          <p class="biography-item">{{ passedData[item] }}</p>
-        </div>
-        <h3 class="text-center my-3 p-2">Aliases (Alternate names)</h3>
-        <ul>
-          <li v-for="(item, index) in aliase" :key="index">{{ item }}</li>
-        </ul>
-      </div>
-    </div>
+  <el-card class="box-card">
+  <div slot="header" class="clearfix">
+    <span>Card name</span>
+    <el-button style="float: right; padding: 3px 0" type="text">Operation button</el-button>
   </div>
+  <div v-for="o in 4" :key="o" class="text item">
+    {{'List item ' + o }}
+  </div>
+  {{ passedData }}
+</el-card>
 </template>
 
 <script>
