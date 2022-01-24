@@ -17,20 +17,24 @@
         <power-stats-component :passedData="apiData.powerstats" />
       </el-tab-pane>
     </el-tabs>
+    <search-form @searchHero="searchHero" />
   </el-row>
 </template>
 
 <script>
 import axios from "axios";
+import { heroList } from "../data/hero-list";
 import AppearanceComponent from "../components/Appearance.vue";
 import BiographyComponent from "../components/Biography.vue";
 import ConnectionsComponent from "../components/Connections.vue";
 import PowerStatsComponent from "../components/PowerStats.vue";
 import WorkComponent from "../components/Work.vue";
+import SearchForm from '../components/SearchForm.vue';
 
 export default {
   name: "Search",
   components: {
+    SearchForm,
     AppearanceComponent,
     BiographyComponent,
     ConnectionsComponent,
@@ -62,15 +66,10 @@ export default {
     handleClick(tab, event) {
       console.log(tab, event);
     },
+    async searchHero(name) {
+      const selectedName = heroList.find((item) => item.name === name);
+      console.log('Name ', selectedName);
+    }
   },
 };
 </script>
-<style>
-.el-tabs__nav-scroll {
-  padding: 0.5rem !important;
-};
-.el-tabs__item {
-  color: red !important;
-  font-size: 1.2rem !important;
-}
-</style>
