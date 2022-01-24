@@ -1,14 +1,22 @@
 <template>
   <el-row>
-    <el-button>Search</el-button>
-    <el-button type="primary">Superhero</el-button>
-    <div v-if="apiData">
-      <appearance-component :passed-data="apiData.appearance" />
-      <biography-component :passedData="apiData.biography" />
-      <work-component :passedData="apiData.work" />
-      <connections-component :passedData="apiData.connections" />
-      <power-stats-component :passedData="apiData.powerstats" />
-    </div>
+    <el-tabs v-if="apiData" type="border-card">
+      <el-tab-pane label="Appearance">
+        <appearance-component :passed-data="apiData.appearance" />
+      </el-tab-pane>
+      <el-tab-pane label="Biography">
+        <biography-component :passedData="apiData.biography" />
+      </el-tab-pane>
+      <el-tab-pane label="Work">
+        <work-component :passedData="apiData.work" />
+      </el-tab-pane>
+      <el-tab-pane label="Connections">
+        <connections-component :passedData="apiData.connections" />
+      </el-tab-pane>
+      <el-tab-pane label="Power">
+        <power-stats-component :passedData="apiData.powerstats" />
+      </el-tab-pane>
+    </el-tabs>
   </el-row>
 </template>
 
@@ -32,6 +40,7 @@ export default {
   data() {
     return {
       apiData: null,
+      activeName: "first",
       loading: false,
       total_results: [],
       selected_tab: "appearance",
@@ -49,6 +58,9 @@ export default {
       if (apiResponse) {
         this.apiData = apiResponse.data;
       }
+    },
+    handleClick(tab, event) {
+      console.log(tab, event);
     },
   },
 };
