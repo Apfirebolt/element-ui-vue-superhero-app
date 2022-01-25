@@ -3,7 +3,14 @@
     <div slot="header" class="clearfix">
       <span>Power Stats</span>
     </div>
-    {{ passedData }}
+    <el-row :gutter="20" v-for="item in Object.keys(passedData)" :key="item">
+      <el-col :span="16">
+        <p>{{ item|capitalize }}</p>
+      </el-col>
+      <el-col :span="8">
+        <p>{{ passedData[item] }}</p>
+      </el-col>
+    </el-row>
   </el-card>
 </template>
 
@@ -14,11 +21,6 @@ export default {
     passedData: {
       required: true,
       type: Object,
-    },
-  },
-  filters: {
-    capitalize(value) {
-      return value.charAt(0).toUpperCase() + value.slice(1);
     },
   },
 };

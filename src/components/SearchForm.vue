@@ -10,13 +10,13 @@
         <el-form-item
           label="Name"
           prop="name"
-          placeholder="Enter the name of the superhero to search for"
           :rules="[
             { required: true, message: 'Name is required' },
           ]"
         >
           <el-input
             type="text"
+            placeholder="Enter the name of the superhero to search for"
             v-model="nameValidateForm.name"
             autocomplete="off"
           ></el-input>

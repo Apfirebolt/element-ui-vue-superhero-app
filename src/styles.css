@@ -16,6 +16,11 @@ label {
   font-weight: 600 !important;
 }
 
+.el-card__header {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
 .text-header {
   font-family: 'Neonderthaw', cursive;
   text-align: center;

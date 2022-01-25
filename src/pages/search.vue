@@ -1,26 +1,28 @@
 <template>
-  <el-row>
-    <h3 class="text-header">Superhero API</h3>
-    <h3 v-if="loading" class="loading-text">Loading...</h3>
-    <h3 v-if="helpText" class="help-text">{{ helpText }}</h3>
-    <el-tabs v-if="apiData" type="border-card">
-      <el-tab-pane label="Appearance">
-        <appearance-component :passed-data="apiData.appearance" />
-      </el-tab-pane>
-      <el-tab-pane label="Biography">
-        <biography-component :passedData="apiData.biography" />
-      </el-tab-pane>
-      <el-tab-pane label="Work">
-        <work-component :passedData="apiData.work" />
-      </el-tab-pane>
-      <el-tab-pane label="Connections">
-        <connections-component :passedData="apiData.connections" />
-      </el-tab-pane>
-      <el-tab-pane label="Power">
-        <power-stats-component :passedData="apiData.powerstats" />
-      </el-tab-pane>
-    </el-tabs>
-    <search-form @searchHero="searchHero" />
+  <el-row :gutter="20">
+    <el-col :span="12" :offset="6">
+      <h3 class="text-header">Superhero API</h3>
+      <h3 v-if="loading" class="loading-text">Loading...</h3>
+      <h3 v-if="helpText" class="help-text">{{ helpText }}</h3>
+      <el-tabs v-if="apiData" type="border-card">
+        <el-tab-pane label="Appearance">
+          <appearance-component :passed-data="apiData.appearance" />
+        </el-tab-pane>
+        <el-tab-pane label="Biography">
+          <biography-component :passedData="apiData.biography" />
+        </el-tab-pane>
+        <el-tab-pane label="Work">
+          <work-component :passedData="apiData.work" />
+        </el-tab-pane>
+        <el-tab-pane label="Connections">
+          <connections-component :passedData="apiData.connections" />
+        </el-tab-pane>
+        <el-tab-pane label="Power">
+          <power-stats-component :passedData="apiData.powerstats" />
+        </el-tab-pane>
+      </el-tabs>
+      <search-form @searchHero="searchHero" />
+    </el-col>
   </el-row>
 </template>
 
@@ -32,7 +34,7 @@ import BiographyComponent from "../components/Biography.vue";
 import ConnectionsComponent from "../components/Connections.vue";
 import PowerStatsComponent from "../components/PowerStats.vue";
 import WorkComponent from "../components/Work.vue";
-import SearchForm from '../components/SearchForm.vue';
+import SearchForm from "../components/SearchForm.vue";
 
 export default {
   name: "Search",
@@ -51,8 +53,8 @@ export default {
       loading: false,
       helpText: "",
       urlParams: {
-        term: '',
-      }
+        term: "",
+      },
     };
   },
   methods: {
@@ -68,7 +70,7 @@ export default {
         try {
           const query = { ...this.$route.query, term: this.urlParams.term };
           this.$router.replace({ query });
-        } catch(err) {
+        } catch (err) {
           console.log(err);
         }
       }
@@ -76,13 +78,14 @@ export default {
     async searchHero(name) {
       const selectedName = heroList.find((item) => item.name === name);
       if (selectedName) {
-        this.helpText = '';
+        this.helpText = "";
         this.getApiData(selectedName.id);
       } else {
-        this.urlParams.term = '';
-        this.helpText = 'Superhero name not found in the database, please try with a different name.'
+        this.urlParams.term = "";
+        this.helpText =
+          "Superhero name not found in the database, please try with a different name.";
       }
-    }
+    },
   },
 };
 </script>
