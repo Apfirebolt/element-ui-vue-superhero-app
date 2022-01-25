@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Neonderthaw&family=Open+Sans&display=swap');
+
 .el-tabs__nav-scroll {
   padding: 0.5rem !important;
 }
@@ -12,4 +14,24 @@ label {
 .el-table__row {
   font-size: 1rem !important;
   font-weight: 600 !important;
+}
+
+.text-header {
+  font-family: 'Neonderthaw', cursive;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.loading-text {
+  font-family: 'Neonderthaw', cursive;
+  text-align: center;
+  font-size: 2rem;
+  color: indianred;
+}
+
+.help-text {
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  color: olivedrab;
 }

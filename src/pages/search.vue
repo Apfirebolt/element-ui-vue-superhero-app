@@ -1,5 +1,8 @@
 <template>
   <el-row>
+    <h3 class="text-header">Superhero API</h3>
+    <h3 v-if="loading" class="loading-text">Loading...</h3>
+    <h3 v-if="helpText" class="help-text">{{ helpText }}</h3>
     <el-tabs v-if="apiData" type="border-card">
       <el-tab-pane label="Appearance">
         <appearance-component :passed-data="apiData.appearance" />
@@ -46,29 +49,39 @@ export default {
       apiData: null,
       activeName: "first",
       loading: false,
-      total_results: [],
-      selected_tab: "appearance",
-      error_text: "",
+      helpText: "",
+      urlParams: {
+        term: '',
+      }
     };
   },
-  mounted() {
-    this.getApiData();
-  },
   methods: {
-    async getApiData() {
+    async getApiData(heroId) {
+      this.loading = true;
       const apiResponse = await axios.get(
-        `api/${process.env.VUE_APP_MY_API_KEY}/3`
+        `api/${process.env.VUE_APP_MY_API_KEY}/${heroId}`
       );
       if (apiResponse) {
+        this.loading = false;
+        this.urlParams.term = apiResponse.data.name;
         this.apiData = apiResponse.data;
+        try {
+          const query = { ...this.$route.query, term: this.urlParams.term };
+          this.$router.replace({ query });
+        } catch(err) {
+          console.log(err);
+        }
       }
-    },
-    handleClick(tab, event) {
-      console.log(tab, event);
     },
     async searchHero(name) {
       const selectedName = heroList.find((item) => item.name === name);
-      console.log('Name ', selectedName);
+      if (selectedName) {
+        this.helpText = '';
+        this.getApiData(selectedName.id);
+      } else {
+        this.urlParams.term = '';
+        this.helpText = 'Superhero name not found in the database, please try with a different name.'
+      }
     }
   },
 };

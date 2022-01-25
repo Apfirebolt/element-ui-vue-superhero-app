@@ -7,13 +7,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('../pages/home.vue')
-  },
-  {
-    path: '/:name',
-    name: 'Superhero',
-    component: () => import('../pages/detail.vue')
+    name: 'SearchHero',
+    component: () => import('../pages/search.vue')
   },
 ];
 
